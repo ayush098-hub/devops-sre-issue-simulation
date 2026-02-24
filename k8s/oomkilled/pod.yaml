@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: oom-leak
+spec:
+  containers:
+  - name: leaky-app
+    image: python:3.11-slim
+    command: ["/bin/sh", "-c"]
+    args:
+      - |
+        python3 -c "
+        import time
+        leak = []
+        iteration = 0
+        while True:
+            # Allocate ~5MB every 2 seconds — simulates a slow leak
+            leak.append('x' * 5 * 1024 * 1024)
+            iteration += 1
+            print(f'Iteration {iteration}: allocated {iteration * 5}MB total', flush=True)
+            time.sleep(2)
+        "
+    resources:
+      requests:
+        memory: "64Mi"
+      limits:
+        memory: "128Mi"

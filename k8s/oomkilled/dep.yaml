@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-dep
+  labels:
+    app: my-app
+spec:
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      name: my-pod
+      labels:
+        app: my-app
+    spec:
+      containers:
+      - name: stress
+        image: polinux/stress
+        command: ["stress"]
+        args:
+          - "--vm"
+          - "1"
+          - "--vm-bytes"
+          - "200M"
+          - "--vm-hang"
+          - "1"
+        resources:
+          requests:
+            memory: "50Mi"
+          limits:
+            memory: "250Mi"
