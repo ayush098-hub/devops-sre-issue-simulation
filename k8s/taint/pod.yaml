@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  containers:
+  - name: nginx-pod
+    image: nginx:latest
+  tolerations:
+  - key: "dedicated"
+    value: "ml-workloads"
+    effect: "NoSchedule"
+    operator: "Equal"
