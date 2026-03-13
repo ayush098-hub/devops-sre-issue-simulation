@@ -5,11 +5,6 @@
 # Ignore the dependency lock file (optional, but often ignored in learning repos)
 .terraform.lock.hcl
 
-# Ignore the specific tutorial folders if you don't want them in Git
-tf/drift-detection/
-tf/import/
-
-# --- Standard Terraform Ignores ---
 # Local state files (SENSITIVE: contains secrets in plain text)
 *.tfstate
 *.tfstate.*
@@ -17,17 +12,5 @@ tf/import/
 # Crash log files
 crash.log
 crash.*.log
-
-# Sensitive variable files (Never commit these!)
-*.tfvars
-*.tfvars.json
-
-# Override files
-override.tf
-override.tf.json
-*_override.tf
-*_override.tf.json
-
-# Terraform CLI configuration
 .terraformrc
 terraform.rc
